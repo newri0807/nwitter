@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from 'components/App';
+import fbase from 'fbase';
+import { auth } from "fbase";
 
 ReactDOM.render(
   <React.StrictMode>

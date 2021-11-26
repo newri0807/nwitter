@@ -15,7 +15,7 @@ const AppRouter = ({ refreshUser, isLoggedIn, userObj }) => {
 
     console.log(userObj);
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             {isLoggedIn && <Navigation userObj={userObj} />}
             <div style={{
                 maxWidth: 890,

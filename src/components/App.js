@@ -46,9 +46,9 @@ function App() {
     });
   };
 
-    
- // 작성법 2. - 예외처리 추가
- // 이메일로 가입해서 로그인시 displayName이 null로 나와서 에러처리
+
+  // 작성법 2. - 예외처리 추가
+  // 이메일로 가입해서 로그인시 displayName이 null로 나와서 에러처리
   // useEffect(() => {
   //   onAuthStateChanged(authService, user => {
   //     if (user) {
@@ -74,10 +74,10 @@ function App() {
     <>
 
       {init ? <AppRouter
-          refreshUser={refreshUser}
-          isLoggedIn={Boolean(userObj)}
-          userObj={userObj}
-        /> : 'Initailizing...'}
+        refreshUser={refreshUser}
+        isLoggedIn={Boolean(userObj)}
+        userObj={userObj}
+      /> : 'Initailizing...'}
       <footer>&copy;  {new Date().getFullYear()} Nwitter</footer>
     </>
 

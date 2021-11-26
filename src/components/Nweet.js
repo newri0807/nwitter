@@ -1,7 +1,7 @@
 import { dbService, storageService } from 'fbase';
 import React from "react";
 import { doc, deleteDoc, updateDoc, getFirestore } from "@firebase/firestore";
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import { deleteObject, ref } from '@firebase/storage';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
@@ -83,14 +83,14 @@ const Nweet = ({ nweetObj, isOwner }) => {
                         //     <button onClick={onDeleteClick}>Delete Nweet</button>
                         //     <button onClick={toggleEditing}>Edit Nweet</button>
                         // </>
-                            <div className="nweet__actions">
-                                <span onClick={onDeleteClick}>
-                                    <FontAwesomeIcon icon={faTrash} />
-                                </span>
-                                <span onClick={toggleEditing}>
-                                    <FontAwesomeIcon icon={faPencilAlt} />
-                                </span>
-                            </div>
+                        <div className="nweet__actions">
+                            <span onClick={onDeleteClick}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </span>
+                            <span onClick={toggleEditing}>
+                                <FontAwesomeIcon icon={faPencilAlt} />
+                            </span>
+                        </div>
                     )}
                 </>
             )}

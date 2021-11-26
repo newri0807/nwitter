@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
+import {
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
+import 'firebase/auth';
+
 
 const inputStyles = {};
 
@@ -23,12 +30,13 @@ const AuthForm = () => {
     try {
       let data;
       if (newAccount) {
-        data = await authService.createUserWithEmailAndPassword(
+        data = await createUserWithEmailAndPassword(
+          authService,
           email,
           password
         );
       } else {
-        data = await authService.signInWithEmailAndPassword(email, password);
+        data = await signInWithEmailAndPassword(authService, email, password);
       }
       console.log(data);
     } catch (error) {
@@ -58,7 +66,7 @@ const AuthForm = () => {
           className="authInput"
         />
         <input
-         className="authInput authSubmit"
+          className="authInput authSubmit"
           type="submit"
           value={newAccount ? "Create Account" : "Sign In"}
         />

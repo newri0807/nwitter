@@ -40,6 +40,8 @@ export default ({ userObj , refreshUser}) => {
     //     }
     // };
 
+
+    // v9 사용.. 
     const onSubmit = async (event) => {
         event.preventDefault();
         await updateProfile(await authService.currentUser, {
@@ -51,22 +53,34 @@ export default ({ userObj , refreshUser}) => {
 
     
     return (
-        <>
-            <form onSubmit={onSubmit}>
+        <div className="container">
+            <form onSubmit={onSubmit} className="profileForm">
                 <input
                     onChange={onChange}
                     type="text"
+                    autoFocus
                     placeholder="Display name"
-                    value={newDisplayName}
+                    value={newDisplayName} 
+                    className="formInput"
+                    />
+                <input
+                    type="submit"
+                    value="Update Profile"
+                    className="formBtn"
+                    style={{
+                        marginTop: 10,
+                    }}
                 />
-                <input type="submit" value="Update Profile" />
             </form>
 
-
+            {/* 
             <button onClick={onLogOutClick} >
                 <Link to="/" >Log Out</Link>
+            </button> */}
 
-            </button>
-        </>
+            <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
+                <Link to="/" >Log Out</Link>
+            </span>
+        </div>
     )
 };

@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/nwitter/static/css/main.2c918ca3.chunk.css",
-    "main.js": "/nwitter/static/js/main.37be344f.chunk.js",
-    "main.js.map": "/nwitter/static/js/main.37be344f.chunk.js.map",
+    "main.js": "/nwitter/static/js/main.3a83aa2e.chunk.js",
+    "main.js.map": "/nwitter/static/js/main.3a83aa2e.chunk.js.map",
     "runtime-main.js": "/nwitter/static/js/runtime-main.9d16df68.js",
     "runtime-main.js.map": "/nwitter/static/js/runtime-main.9d16df68.js.map",
     "static/js/2.7737a4bf.chunk.js": "/nwitter/static/js/2.7737a4bf.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.9d16df68.js",
     "static/js/2.7737a4bf.chunk.js",
     "static/css/main.2c918ca3.chunk.css",
-    "static/js/main.37be344f.chunk.js"
+    "static/js/main.3a83aa2e.chunk.js"
   ]
 }

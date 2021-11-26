@@ -9,14 +9,14 @@ import {
 } from "firebase/firestore"
 import Nweet from 'components/Nweet';
 import { getDownloadURL, ref, uploadString } from '@firebase/storage';
-import { v4 } from 'uuid';
-
+//import { v4 } from 'uuid';
+import NweetFactory from "components/NweetFactory";
 
 const Home = ({ userObj }) => {
     console.log(userObj);
-    const [nweet, setNweet] = useState("");
+   // const [nweet, setNweet] = useState("");
     const [nweets, setNweets] = useState([]);
-    const [attachment, setAttachment] = useState("");
+   //const [attachment, setAttachment] = useState("");
 
     console.log(nweets);
     // const getNweets = async () => {
@@ -46,89 +46,89 @@ const Home = ({ userObj }) => {
         });
     }, []);
 
-    const onFileChange = (event) => {
-        console.log(event.target.files);
-        const {
-            target: { files },
-        } = event;
+    // const onFileChange = (event) => {
+    //     console.log(event.target.files);
+    //     const {
+    //         target: { files },
+    //     } = event;
 
-        //[FileReader API]
-        const theFile = files[0];
-        const reader = new FileReader();
-        reader.onloadend = (finishedEvent) => {
-            console.log(finishedEvent);
-            const {
-                currentTarget: { result },
-            } = finishedEvent;
-            setAttachment(result);
-        };
-        reader.readAsDataURL(theFile);
-    };
+    //     //[FileReader API]
+    //     const theFile = files[0];
+    //     const reader = new FileReader();
+    //     reader.onloadend = (finishedEvent) => {
+    //         console.log(finishedEvent);
+    //         const {
+    //             currentTarget: { result },
+    //         } = finishedEvent;
+    //         setAttachment(result);
+    //     };
+    //     reader.readAsDataURL(theFile);
+    // };
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        // await addDoc(collection(dbService, "nweets"), {
-        //     text: nweet,
-        //     createdAt: Date.now(),
-        //     creatorId: userObj.uid,
-        // });
-        // setNweet("");
-
-
-        // const fileRef = ref(storageService, `${userObj.uid}/${v4()}`); // 1. 이미지 폴더 생성
-        // const response = await uploadString(fileRef, attachment, "data_url"); // 2. 폴더에 이미지 넣는 작업
-        // console.log(await response.ref.getDownloadURL());
+    // const onSubmit = async (event) => {
+    //     event.preventDefault();
+    //     // await addDoc(collection(dbService, "nweets"), {
+    //     //     text: nweet,
+    //     //     createdAt: Date.now(),
+    //     //     creatorId: userObj.uid,
+    //     // });
+    //     // setNweet("");
 
 
-        let attachmentUrl = "";
-        if (attachment !== "") {
-            //파일 경로 참조 만들기
-            const fileRef = ref(storageService, `${userObj.uid}/${v4()}`);
-            //storage 참조 경로로 파일 업로드 하기
-            const uploadFile = await uploadString(fileRef, attachment, "data_url");
-            console.log(uploadFile);
-            //storage에 있는 파일 URL로 다운로드 받기
-            attachmentUrl = await getDownloadURL(uploadFile.ref);
-        }
-
-        //트윗할때, 메시지와 사진도 같이 firestore에 생성
-        const nweetPosting = {
-            text: nweet,
-            createdAt: Date.now(),
-            creatorId: userObj.uid,
-            attachmentUrl,
-        };
-        await addDoc(collection(dbService, "nweets"), nweetPosting);
-        setNweet("");
-        setAttachment("");
+    //     // const fileRef = ref(storageService, `${userObj.uid}/${v4()}`); // 1. 이미지 폴더 생성
+    //     // const response = await uploadString(fileRef, attachment, "data_url"); // 2. 폴더에 이미지 넣는 작업
+    //     // console.log(await response.ref.getDownloadURL());
 
 
-    };
+    //     let attachmentUrl = "";
+    //     if (attachment !== "") {
+    //         //파일 경로 참조 만들기
+    //         const fileRef = ref(storageService, `${userObj.uid}/${v4()}`);
+    //         //storage 참조 경로로 파일 업로드 하기
+    //         const uploadFile = await uploadString(fileRef, attachment, "data_url");
+    //         console.log(uploadFile);
+    //         //storage에 있는 파일 URL로 다운로드 받기
+    //         attachmentUrl = await getDownloadURL(uploadFile.ref);
+    //     }
+
+    //     //트윗할때, 메시지와 사진도 같이 firestore에 생성
+    //     const nweetPosting = {
+    //         text: nweet,
+    //         createdAt: Date.now(),
+    //         creatorId: userObj.uid,
+    //         attachmentUrl,
+    //     };
+    //     await addDoc(collection(dbService, "nweets"), nweetPosting);
+    //     setNweet("");
+    //     setAttachment("");
 
 
-
-
-    const onChange = (event) => {
-        const {
-            target: { value },
-        } = event;
-        setNweet(value);
-    };
-
-    // clear 버튼 클릭시 사진, 파일 네임 초기화
-    const fileInput = useRef();
-    const onClearAttachment = () => {
-        setAttachment("");
-        fileInput.current.value = null;
-    }
+    // };
 
 
 
 
-    console.log(userObj);
+    // const onChange = (event) => {
+    //     const {
+    //         target: { value },
+    //     } = event;
+    //     setNweet(value);
+    // };
+
+    // // clear 버튼 클릭시 사진, 파일 네임 초기화
+    // const fileInput = useRef();
+    // const onClearAttachment = () => {
+    //     setAttachment("");
+    //     fileInput.current.value = null;
+    // }
+
+
+
+
+    // console.log(userObj);
     return (
         <div>
-            <form onSubmit={onSubmit}>
+            {/* <form onSubmit={onSubmit}>
                 <input
                     value={nweet}
                     onChange={onChange}
@@ -144,7 +144,8 @@ const Home = ({ userObj }) => {
                         <button onClick={onClearAttachment}>Clear</button>
                     </div>
                 )}
-            </form>
+            </form> */}
+             <NweetFactory userObj={userObj} />
             <div>
                 {nweets.map((nweet) => (
                     <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid} />
